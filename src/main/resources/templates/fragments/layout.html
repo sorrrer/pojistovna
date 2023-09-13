@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="cs-cz">
+<!-- zde vytváříme fragment pro head -->
+<head th:fragment="head">
+    <meta charset="UTF-8">
+    <meta name="description" content="Osobní portfolio pro služební účely" />
+    <meta name="author" content="Jiří Kopecký">
+    <title>Evidence pojištěných</title>
+    <!-- odkazy na potřebné styly a skripty-->
+    <link rel="stylesheet" th:href="@{/styles/bootstrap.min.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/styles/styles.css}" type="text/css"/>
+    <script th:src="@{/scripts/scripts.js}"></script>
+</head>
+<body>
+<!-- zde vytváříme fragment navigace -->
+
+<div class="container" th:fragment="header">
+    <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+        <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+            <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
+            <span class="fs-4">Evidence pojištěnců</span>
+        </a>
+
+        <ul class="nav nav-pills">
+            <li class="nav-item"><a th:href="@{/}" class="nav-link active" aria-current="page">Hlavní stránka</a></li>
+            <li class="nav-item"><a th:href="@{/persons}" class="nav-link">Pojištěnci</a></li>
+            <li class="nav-item"><a th:href="@{/account/login}" class="nav-link">Přihlásit se</a></li>
+            <li class="nav-item"><a th:href="@{/account/register}" class="nav-link">Registrovat</a></li>
+            <li class="nav-item">
+                <form method="post" th:action="@{/account/logout}">
+                    <button class="btn btn-primary">Odhlásit se</button>
+                </form>
+            </li>
+        </ul>
+    </header>
+</div>
+<!-- Zde vytváříme fragment pro footer -->
+<footer th:fragment="footer">
+    <div class="row fixed-bottom border-top">
+        <div class="col text-center">
+            <p class="text-center text-body-secondary">&copy; 2023 Jiří Kopecký</p>
+        </div>
+    </div>
+</footer>
+</body>
+</html>
