@@ -8,5 +8,5 @@ public interface UserService {
 
     void create(UserDTO user);
     List<UserDTO> getAll();
-    UserDTO getById(Long userId);
+    UserDTO getById(long userId);
 }

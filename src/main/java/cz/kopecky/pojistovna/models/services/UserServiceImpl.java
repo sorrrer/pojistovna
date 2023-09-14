@@ -33,7 +33,7 @@ public class UserServiceImpl implements UserService{
     }
     /* metoda pro zobrazení detailu uživatele */
     @Override
-    public UserDTO getById(Long userId)
+    public UserDTO getById(long userId)
     {
         UserEntity fetchedUser = userRepository
                 .findById(userId)

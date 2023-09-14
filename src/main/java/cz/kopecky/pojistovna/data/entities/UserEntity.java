@@ -7,7 +7,7 @@ import jakarta.validation.constraints.NotNull;
 public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userId;
+    private long userId;
     @Column(nullable = false)
     private String firstName;
     @Column(nullable = false)
@@ -23,11 +23,11 @@ public class UserEntity {
     @Column(nullable = false)
     private int psc;
 
-    public Long getUserId() {
+    public long getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(long userId) {
         this.userId = userId;
     }
 
