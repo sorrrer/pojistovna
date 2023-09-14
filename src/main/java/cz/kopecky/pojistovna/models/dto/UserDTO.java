@@ -6,6 +6,7 @@ import jakarta.validation.constraints.NotNull;
 import javax.swing.*;
 
 public class UserDTO {
+    private Long userId;
     @NotNull(message = "Vyplňte své jméno.")
     @NotBlank(message = "Vyplňte své jméno.")
     private String firstName;
@@ -82,5 +83,13 @@ public class UserDTO {
 
     public void setPhoneNumber(int phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 }
