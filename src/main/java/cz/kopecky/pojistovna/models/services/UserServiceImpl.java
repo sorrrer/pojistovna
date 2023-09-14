@@ -3,6 +3,7 @@ package cz.kopecky.pojistovna.models.services;
 import cz.kopecky.pojistovna.data.entities.UserEntity;
 import cz.kopecky.pojistovna.data.repositories.UserRepository;
 import cz.kopecky.pojistovna.models.dto.UserDTO;
+import cz.kopecky.pojistovna.models.exceptions.UserNotFoundException;
 import cz.kopecky.pojistovna.models.mappers.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -60,7 +61,7 @@ public class UserServiceImpl implements UserService{
     {
         return userRepository
                 .findById(userId)
-                .orElseThrow();
+                .orElseThrow(UserNotFoundException::new);
     }
 
 

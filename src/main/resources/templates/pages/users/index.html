@@ -3,6 +3,11 @@
 <head th:replace="~{fragments/layout.html :: head}"></head>
 <body>
 <header th:replace="~{fragments/layout.html :: header}"></header>
+<!-- stavové hlášky -->
+<div class="alert alert-success" role="alert" th:text="${success}" th:if="${success}"></div>
+<div class="alert alert-danger" role="alert" th:text="${error}" th:if="${error}"></div>
+
+
 <div class="container">
     <article>
         <div class="row">

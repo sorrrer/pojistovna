@@ -2,6 +2,7 @@ package cz.kopecky.pojistovna.controllers;
 
 import cz.kopecky.pojistovna.data.repositories.UserRepository;
 import cz.kopecky.pojistovna.models.dto.UserDTO;
+import cz.kopecky.pojistovna.models.exceptions.UserNotFoundException;
 import cz.kopecky.pojistovna.models.mappers.UserMapper;
 import cz.kopecky.pojistovna.models.services.UserService;
 import jakarta.validation.Valid;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -36,11 +38,13 @@ public class UserController {
     }
     /* controller pro odeslání dat z create šablony */
     @PostMapping("create")
-    public String createUserForm(@Valid @ModelAttribute UserDTO user,BindingResult result)
+    public String createUserForm(@Valid @ModelAttribute UserDTO user, BindingResult result, RedirectAttributes redirectAttributes)
     {
         if(result.hasErrors())
             return renderUserForm(user);
         userService.create(user);
+        /* stavová zpráva */
+        redirectAttributes.addFlashAttribute("success","Pojištěnec byl vytvořen.");
         return "redirect:/users";
     }
     /* controller pro zobrazení detailu pojištěnce */
@@ -61,19 +65,31 @@ public class UserController {
     }
     /* PostMapping pro odeslání editace uživatele */
     @PostMapping("edit/{userId}")
-    public String createEditForm(@PathVariable long userId, @Valid UserDTO user,BindingResult result)
+    public String createEditForm(@PathVariable long userId, @Valid UserDTO user,BindingResult result,RedirectAttributes redirectAttributes)
     {
         if (result.hasErrors())
             renderEditUser(userId,user);
         user.setUserId(userId);
         userService.edit(user);
+        /* stavová zpráva */
+        redirectAttributes.addFlashAttribute("success","Pojištěnec byl úspěšně editován.");
         return "redirect:/users";
     }
     /* controller pro mazání pojištěnce */
     @PostMapping("delete/{userId}")
-    public String deleteUser(@PathVariable long userId)
+    public String deleteUser(@PathVariable long userId,RedirectAttributes redirectAttributes)
     {
         userService.remove(userId);
+        /* stavová zpráva */
+        redirectAttributes.addFlashAttribute("success","Pojištěnec byl úspěšně odstraněn.");
+        return "redirect:/users";
+    }
+
+    /*metoda, která zpracovává chyby*/
+    @ExceptionHandler({UserNotFoundException.class})
+    public String handleUserNotFoundException(RedirectAttributes redirectAttributes)
+    {
+        redirectAttributes.addFlashAttribute("error","Pojištěnec nebyl nalezen.");
         return "redirect:/users";
     }
 
