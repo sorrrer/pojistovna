@@ -6,11 +6,14 @@ import cz.kopecky.pojistovna.models.services.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/users")
@@ -19,8 +22,10 @@ public class UserController {
    private UserService userService;
     /* controller pro šablonu users/index */
     @GetMapping
-    public String renderUserIndex()
+    public String renderUserIndex(Model model)
     {
+        List<UserDTO> users = userService.getAll();
+        model.addAttribute("users",users);
         return "pages/users/index";
     }
     /* controller pro šablonu users/create */
@@ -37,7 +42,6 @@ public class UserController {
             return renderUserForm(user);
         userService.create(user);
         return "redirect:/users";
-
     }
 
 
