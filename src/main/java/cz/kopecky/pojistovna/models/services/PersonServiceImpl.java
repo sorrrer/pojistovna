@@ -7,6 +7,8 @@ import cz.kopecky.pojistovna.models.exceptions.DuplicateEmailException;
 import cz.kopecky.pojistovna.models.exceptions.PasswordDoNotException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -31,5 +33,11 @@ public class PersonServiceImpl implements PersonService{
         {
             throw new DuplicateEmailException();
         }
+    }
+    @Override
+    public UserDetails loadUserByUsername(String username)throws UsernameNotFoundException
+    {
+        return personRepository.findByEmail(username)
+                .orElseThrow(() -> new UsernameNotFoundException("username, " + username + " not found."));
     }
 }
