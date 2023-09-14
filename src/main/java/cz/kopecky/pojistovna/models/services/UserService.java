@@ -10,4 +10,5 @@ public interface UserService {
     List<UserDTO> getAll();
     UserDTO getById(long userId);
     void edit(UserDTO user);
+    void remove(long userId);
 }

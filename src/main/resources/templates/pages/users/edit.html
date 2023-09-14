@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="cs-cz">
+<head th:replace="~{fragments/layout.html :: head}"></head>
+<body>
+<header th:replace="~{fragments/layout.html :: header}"></header>
+<div class="container">
+    <article>
+        <div class="container">
+            <div class="row">
+                <div class="col text-center text-uppercase m-3">
+                    <h1>přidat pojištěnce</h1>
+                </div>
+
+                <form class="row"
+                      method="post"
+                      th:action="@{'/users/edit/' + ${userId}}"
+                      th:object="${userDTO}">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="firstName" class="control-label">Jméno</label>
+                            <input id="firstName" th:field="*{firstName}" class="form-control form-control-lg" type="text" aria-label="default input example"/>
+                            <small class="text-danger" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></small>
+                        </div>
+                        <div class="form-group">
+                            <label for="secondName" class="control-label">Příjmení</label>
+                            <input id="secondName" th:field="*{secondName}" class="form-control form-control-lg" type="text" aria-label="default input example"/>
+                            <small class="text-danger" th:if="${#fields.hasErrors('secondName')}" th:errors="*{secondName}"></small>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="address" class="control-label">adresa a číslo popisné</label>
+                            <input id="address" th:field="*{address}" class="form-control form-control-lg" type="text" aria-label="default input example"/>
+                            <small class="text-danger" th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></small>
+                        </div>
+                        <div class="form-group">
+                            <label for="street" class="control-label">Ulice</label>
+                            <input id="street" th:field="*{street}" class="form-control form-control-lg" type="text" aria-label="default input example"/>
+                            <small class="text-danger" th:if="${#fields.hasErrors('street')}" th:errors="*{street}"></small>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="psc" class="control-label">PSČ</label>
+                            <input id="psc" th:field="*{psc}" class="form-control form-control-lg" type="text" aria-label="default input example"/>
+                            <small class="text-danger" th:if="${#fields.hasErrors('psc')}" th:errors="*{psc}"></small>
+                        </div>
+                        <div class="form-group">
+                            <label for="phoneNumber" class="control-label">Telefon</label>
+                            <input id="phoneNumber" th:field="*{phoneNumber}" class="form-control form-control-lg" type="text" aria-label="default input example"/>
+                            <small class="text-danger" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></small>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="email" class="control-label">Email</label>
+                            <input id="email" th:field="*{email}" class="form-control form-control-lg" type="email" aria-label="default input example" placeholder="jmeno@email.cz"/>
+                            <small class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></small>
+                        </div>
+                    </div>
+
+                    <div class="form-group text-center m-2">
+                        <button type="submit" class="btn btn-primary btn-lg">Uložit</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </article>
+</div>
+<footer th:replace="~{fragments/layout.html :: footer}"></footer>
+</body>
+</html>

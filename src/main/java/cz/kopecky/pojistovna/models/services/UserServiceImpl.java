@@ -47,6 +47,14 @@ public class UserServiceImpl implements UserService{
         userRepository.save(fetchedUser);
 
     }
+    /* metoda pro mazání pojištěnce */
+    public void remove(long userId)
+    {
+        UserEntity fetchedEntity = getUserOrThrow(userId);
+        userRepository.delete(fetchedEntity);
+
+    }
+
     /* privátní metoda pro zkrácení */
     private UserEntity getUserOrThrow(long userId)
     {
@@ -54,5 +62,6 @@ public class UserServiceImpl implements UserService{
                 .findById(userId)
                 .orElseThrow();
     }
+
 
 }

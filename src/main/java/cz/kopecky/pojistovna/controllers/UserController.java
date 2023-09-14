@@ -69,6 +69,13 @@ public class UserController {
         userService.edit(user);
         return "redirect:/users";
     }
+    /* controller pro mazání pojištěnce */
+    @PostMapping("delete/{userId}")
+    public String deleteUser(@PathVariable long userId)
+    {
+        userService.remove(userId);
+        return "redirect:/users";
+    }
 
 
 
