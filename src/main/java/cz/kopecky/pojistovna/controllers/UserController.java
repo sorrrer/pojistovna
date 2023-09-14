@@ -8,10 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -42,6 +39,14 @@ public class UserController {
             return renderUserForm(user);
         userService.create(user);
         return "redirect:/users";
+    }
+    /* controller pro zobrazení detailu pojištěnce */
+    @GetMapping("{userId}")
+    public String renderDetailUser(@PathVariable long userId, Model model)
+    {
+        UserDTO user = userService.getById(userId);
+        model.addAttribute("user",user);
+        return "pages/users/detail";
     }
 
 

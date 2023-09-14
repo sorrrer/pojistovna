@@ -16,19 +16,29 @@ public class UserServiceImpl implements UserService{
     private UserMapper userMapper;
     @Autowired
     private UserRepository userRepository;
-
+    /* metoda pro vytvoření uživatele */
     @Override
     public void create(UserDTO user)
     {
         UserEntity userEntity = userMapper.toEntity(user);
         userRepository.save(userEntity);
     }
+    /* metoda pro výpis všech pojištěnců */
     @Override
     public List<UserDTO> getAll()
     {
         return StreamSupport.stream(userRepository.findAll().spliterator(),false)
                 .map(i -> userMapper.toDTO(i))
                 .toList();
+    }
+    /* metoda pro zobrazení detailu uživatele */
+    @Override
+    public UserDTO getById(Long userId)
+    {
+        UserEntity fetchedUser = userRepository
+                .findById(userId)
+                .orElseThrow();
+        return userMapper.toDTO(fetchedUser);
     }
 
 }
