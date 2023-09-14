@@ -35,10 +35,22 @@ public class UserServiceImpl implements UserService{
     @Override
     public UserDTO getById(long userId)
     {
-        UserEntity fetchedUser = userRepository
+        UserEntity fetchedUser = getUserOrThrow(userId);
+        return userMapper.toDTO(fetchedUser);
+    }
+    @Override
+    public void edit(UserDTO user)
+    {
+        UserEntity fetchedUser = getUserOrThrow(user.getUserId());
+        userMapper.updateUserEntity(user, fetchedUser);
+        userRepository.save(fetchedUser);
+
+    }
+    private UserEntity getUserOrThrow(long userId)
+    {
+        return userRepository
                 .findById(userId)
                 .orElseThrow();
-        return userMapper.toDTO(fetchedUser);
     }
 
 }

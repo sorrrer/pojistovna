@@ -26,7 +26,7 @@
                     </thead>
                     <tbody>
                        <tr th:each="user:${users}">
-                           <td><a th:href="@{'/users/' + ${user.userId}}" th:text="${user.firstName}"></a> <a href="#" th:text="${user.secondName}"></a></td>
+                           <td><a th:href="@{'/users/' + ${user.userId}}" th:text="${user.firstName}"></a> <a th:href="@{'/users/edit/' + ${user.userId}}" th:text="${user.secondName}"></a></td>
                            <td th:text="${user.address}"></td>
                            <td><a class="btn btn-warning" href="#">EDITOVAT</a> <a class="btn btn-primary" href="#">ODSTRANIT</a> </td>
                        </tr>

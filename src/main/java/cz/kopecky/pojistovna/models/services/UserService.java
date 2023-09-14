@@ -9,4 +9,5 @@ public interface UserService {
     void create(UserDTO user);
     List<UserDTO> getAll();
     UserDTO getById(long userId);
+    void edit(UserDTO user);
 }

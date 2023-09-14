@@ -2,6 +2,7 @@ package cz.kopecky.pojistovna.controllers;
 
 import cz.kopecky.pojistovna.data.repositories.UserRepository;
 import cz.kopecky.pojistovna.models.dto.UserDTO;
+import cz.kopecky.pojistovna.models.mappers.UserMapper;
 import cz.kopecky.pojistovna.models.services.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,8 @@ import java.util.List;
 public class UserController {
     @Autowired
    private UserService userService;
+    @Autowired
+    private UserMapper userMapper;
     /* controller pro šablonu users/index */
     @GetMapping
     public String renderUserIndex(Model model)
@@ -48,6 +51,15 @@ public class UserController {
         model.addAttribute("user",user);
         return "pages/users/detail";
     }
+    /* controller pro zobrazení šablony pro editaci */
+    @GetMapping("edit/{userId}")
+    public String renderEditUser(@PathVariable long userId, UserDTO user)
+    {
+        UserDTO fetchedUser = userService.getById(userId);
+        userMapper.updateUserDTO(fetchedUser,user);
+        return "pages/users/edit";
+    }
+
 
 
 }
