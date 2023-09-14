@@ -59,6 +59,16 @@ public class UserController {
         userMapper.updateUserDTO(fetchedUser,user);
         return "pages/users/edit";
     }
+    /* PostMapping pro odeslání editace uživatele */
+    @PostMapping("edit/{userId}")
+    public String createEditForm(@PathVariable long userId, @Valid UserDTO user,BindingResult result)
+    {
+        if (result.hasErrors())
+            renderEditUser(userId,user);
+        user.setUserId(userId);
+        userService.edit(user);
+        return "redirect:/users";
+    }
 
 
 

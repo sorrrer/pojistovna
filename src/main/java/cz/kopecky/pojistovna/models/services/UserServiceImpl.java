@@ -38,6 +38,7 @@ public class UserServiceImpl implements UserService{
         UserEntity fetchedUser = getUserOrThrow(userId);
         return userMapper.toDTO(fetchedUser);
     }
+    /* metoda pro editaci uživatele */
     @Override
     public void edit(UserDTO user)
     {
@@ -46,6 +47,7 @@ public class UserServiceImpl implements UserService{
         userRepository.save(fetchedUser);
 
     }
+    /* privátní metoda pro zkrácení */
     private UserEntity getUserOrThrow(long userId)
     {
         return userRepository
