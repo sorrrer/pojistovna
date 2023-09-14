@@ -7,6 +7,7 @@ import cz.kopecky.pojistovna.models.mappers.UserMapper;
 import cz.kopecky.pojistovna.models.services.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -31,12 +32,14 @@ public class UserController {
         return "pages/users/index";
     }
     /* controller pro šablonu users/create */
+    @Secured("ROLE_ADMIN")
     @GetMapping("create")
     public String renderUserForm(@ModelAttribute UserDTO user)
     {
         return "pages/users/create";
     }
     /* controller pro odeslání dat z create šablony */
+    @Secured("ROLE_ADMIN")
     @PostMapping("create")
     public String createUserForm(@Valid @ModelAttribute UserDTO user, BindingResult result, RedirectAttributes redirectAttributes)
     {
@@ -56,6 +59,7 @@ public class UserController {
         return "pages/users/detail";
     }
     /* controller pro zobrazení šablony pro editaci */
+    @Secured("ROLE_ADMIN")
     @GetMapping("edit/{userId}")
     public String renderEditUser(@PathVariable long userId, UserDTO user)
     {
@@ -64,6 +68,7 @@ public class UserController {
         return "pages/users/edit";
     }
     /* PostMapping pro odeslání editace uživatele */
+    @Secured("ROLE_ADMIN")
     @PostMapping("edit/{userId}")
     public String createEditForm(@PathVariable long userId, @Valid UserDTO user,BindingResult result,RedirectAttributes redirectAttributes)
     {
@@ -76,6 +81,7 @@ public class UserController {
         return "redirect:/users";
     }
     /* controller pro mazání pojištěnce */
+    @Secured("ROLE_ADMIN")
     @PostMapping("delete/{userId}")
     public String deleteUser(@PathVariable long userId,RedirectAttributes redirectAttributes)
     {
