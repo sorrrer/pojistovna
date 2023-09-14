@@ -7,13 +7,31 @@
     <article>
         <div class="row">
             <div class="col text-center text-uppercase">
-                <h1>Portfolio</h1>
+                <h1>Pojištěnci</h1>
             </div>
         </div>
         <section>
             <div class="row">
                 <div class="col text-center">
-                    <a class="btn btn-outline-primary btn-lg" th:href="@{/users/create}">Nový pojištěnec</a>
+                    <a class="btn btn-outline-primary btn-lg m-3" th:href="@{/users/create}">Nový pojištěnec</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6 offset-3 text-center">
+                <table class="table table-bordered border-primary">
+                    <thead>
+                        <th scope="col">Jméno</th>
+                        <th scope="col">Bydliště</th>
+                        <th scope="col"></th>
+                    </thead>
+                    <tbody>
+                       <tr th:each="user:${users}">
+                           <td><a href="#" th:text="${user.firstName}"></a> <a href="#" th:text="${user.secondName}"></a></td>
+                           <td th:text="${user.address}"></td>
+                           <td><a class="btn btn-warning" href="#">EDITOVAT</a> <a class="btn btn-primary" href="#">ODSTRANIT</a> </td>
+                       </tr>
+                    </tbody>
+                </table>
                 </div>
             </div>
         </section>
