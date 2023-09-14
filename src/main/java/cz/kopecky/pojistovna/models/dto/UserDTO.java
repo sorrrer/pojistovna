@@ -21,10 +21,10 @@ public class UserDTO {
     @NotBlank(message = "vyplňte svůj email.")
     @NotNull(message = "Vyplňte svůj email.")
     private String email;
-    @NotBlank(message = "Vyplňte své směrovací číslo.")
+
     @NotNull(message = "Vyplňte své směrovací číslo")
     private int psc;
-    @NotBlank(message = "Vyplňte své telefonní číslo.")
+
     @NotNull(message = "Vyplňte své telefonní číslo.")
     private int phoneNumber;
 
