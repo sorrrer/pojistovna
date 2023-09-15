@@ -19,8 +19,6 @@ public class PersonEntity implements UserDetails {
     @Column(nullable = false)
     private String password;
     @Column(nullable = false)
-    private String confirmPassword;
-    @Column(nullable = false)
     private boolean admin;
 
     public long getPersonId() {
@@ -41,14 +39,6 @@ public class PersonEntity implements UserDetails {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getConfirmPassword() {
-        return confirmPassword;
-    }
-
-    public void setConfirmPassword(String confirmPassword) {
-        this.confirmPassword = confirmPassword;
     }
 
     public boolean isAdmin() {
@@ -96,5 +86,7 @@ public class PersonEntity implements UserDetails {
     {
         return true;
     }
+
+
 
 }

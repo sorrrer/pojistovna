@@ -33,11 +33,11 @@
                             <small class="text-danger" th:errors="*{confirmPassword}"></small>
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="clanky-tlacitko align-self-start">Registrovat</button>
+                            <button type="submit" class="btn btn-primary">Registrovat</button>
                         </div>
                         <div class="form-group">
                             <p>
-                                <a th:href="@{/account/login}" class="btn btn-primary">Přihlásit se</a>
+                                <a role="button" th:href="@{/account/login}" class="btn btn btn-outline-primary">Přihlásit se</a>
                             </p>
                         </div>
                     </form>

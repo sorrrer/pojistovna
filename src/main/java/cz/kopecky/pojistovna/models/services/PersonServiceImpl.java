@@ -19,12 +19,15 @@ public class PersonServiceImpl implements PersonService{
     @Autowired
     private PasswordEncoder passwordEncoder;
     @Override
-    public void create(PersonDTO user, boolean isAdmin)
+    public void create(PersonDTO person, boolean isAdmin)
     {
-        if(!user.getPassword().equals(user.getConfirmPassword()))
+        if(!person.getPassword().equals(person.getConfirmPassword()))
             throw new PasswordDoNotException();
+
         PersonEntity personEntity = new PersonEntity();
-        personEntity.setEmail(passwordEncoder.encode(user.getPassword()));
+
+        personEntity.setEmail(person.getEmail());
+        personEntity.setPassword(passwordEncoder.encode(person.getPassword()));
         personEntity.setAdmin(isAdmin);
         try {
             personRepository.save(personEntity);

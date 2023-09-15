@@ -2,6 +2,7 @@ package cz.kopecky.pojistovna.controllers;
 
 import cz.kopecky.pojistovna.models.dto.PersonDTO;
 import cz.kopecky.pojistovna.models.exceptions.DuplicateEmailException;
+import cz.kopecky.pojistovna.models.exceptions.PasswordDoNotException;
 import cz.kopecky.pojistovna.models.services.PersonService;
 import jakarta.persistence.GeneratedValue;
 import jakarta.validation.Valid;
@@ -38,6 +39,11 @@ public class AccountController {
             personService.create(personDTO,false);
         }
         catch (DuplicateEmailException e)
+        {
+            result.rejectValue("email","error","Zadaný email je již používán.");
+            return "pages/account/register";
+        }
+        catch (PasswordDoNotException e)
         {
             result.rejectValue("email","error","Hesla se neshodují.");
             result.rejectValue("confirmPassword","error","Hesla se neshodují.");

@@ -4,9 +4,9 @@
 <body>
 <header th:replace="~{fragments/layout.html :: header}"></header>
 <div class="container">
-    <div class="row offset-4">
+    <div class="row offset-2">
         <div class="col-2">
-            <img src="..." class="object-fit-cover border rounded" alt="...">
+            <img th:src="@{/images/avatar.png}" width="130px" height="150px" class="object-fit-cover border rounded" alt="...">
         </div>
         <div class="col-3">
             <h3 th:text="${user.firstName}"></h3> <h3 th:text="${user.secondName}"></h3>
